@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+
+<title>Update accex</title>
+
+{% endblock %}
+
+
+{% block body %}
+
+<div>
+  
+  <h1>Update exercise</h1>
+
+  <form action='/update/{{exercise.id}}' method='POST'>
+
+    <label for='name'>Update exercise</label>
+    <input type='text' name='name' value='{{exercise.name}}'/>
+
+    <label for='body_area'>Choose target body area</label>
+    <select name='body_area'>
+      <option value='push'>push</option>
+      <option value='pull'>pull</option>
+      <option value='legs'>legs</option>
+      <option value='core'>core</option>
+      <option value='distance'>distance</option>
+      <option value='full'>full</option>
+    </select>
+
+    <input type='submit' value='update'/>
+
+  </form>
+
+</div>
+
+{% endblock %}
+
