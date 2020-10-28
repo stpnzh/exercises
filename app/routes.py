@@ -99,22 +99,22 @@ def delete(id):
     return 'Error in deletion!'
 
 
-@app.route('/update/<int:id>', methods=['GET', 'POST'])
-def update(id):
-  exercise = Exercise.query.get_or_404(id)
+# @app.route('/update/<int:id>', methods=['GET', 'POST'])
+# def update(id):
+#   exercise = Exercise.query.get_or_404(id)
 
-  if request.method == 'POST':
-    exercise.name = request.form['name']
-    exercise.body_area = request.form['body_area']
+#   if request.method == 'POST':
+#     exercise.name = request.form['name']
+#     exercise.body_area = request.form['body_area']
 
-    try:
-      db.session.commit()
-      return redirect('/exercises')
-    except:
-      return 'Error in updating!'
+#     try:
+#       db.session.commit()
+#       return redirect('/exercises')
+#     except:
+#       return 'Error in updating!'
 
-  else:
-    return render_template('update.html', exercise=exercise)
+#   else:
+#     return render_template('update.html', exercise=exercise)
     
 
 @app.route('/login', methods=['GET', 'POST'])

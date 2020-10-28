@@ -9,84 +9,91 @@
 
 
 {% block body %}
-<div class='mt-5 d-flex'>
-
-  <div class='p-5'>
-
-
-    <h1 class='display-4'>Add an exercise</h1>
-
-    <form action='/exercises' method='POST'>
-      <div class='form-group'>
-        <input class='form-control' type='text' name='name' placeholder='Exercise'>
+<div class='m-4 d-flex'>
+  <div class='p-5' style='width:45%'>
+    <div class='sticky-top'>
+      <h1 class='display-4'>Add an exercise</h1>
+      <form action='/exercises' method='POST' class='py-2' style='width:80%'>
+        <div class='form-group'>
+          <input class='form-control' type='text' name='name' placeholder='Exercise'>
+        </div>
+        <div class='form-group'>
+          <select class='form-control' name='body_area'>
+            <option value='push'>push</option>
+            <option value='pull'>pull</option>
+            <option value='legs'>legs</option>
+            <option value='core'>core</option>
+            <option value='full'>full</option>
+            <option value='distance'>distance</option>
+          </select>
+        </div>
+        <input type='submit' value='Add' class='btn btn-info'>
+      </form>
+      <div class='pt-5' style='width:50%'>
+        <ul class='list-group'>
+          <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+            Push
+            <span class="badge badge-info badge-pill">{{ push_count }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+            Pull
+            <span class="badge badge-info badge-pill">{{ pull_count }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+            Legs
+            <span class="badge badge-info badge-pill">{{ legs_count }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+            Core
+            <span class="badge badge-info badge-pill">{{ core_count }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+            Full body
+            <span class="badge badge-info badge-pill">{{ full_count }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+            Distance
+            <span class="badge badge-info badge-pill">{{ distance_count }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center py-1 ">
+            Total
+            <span class="badge badge-info badge-pill">{{ exercises|length }}</span>
+          </li>
+        </ul>
       </div>
-      <div class='form-group'>
-        <select class='form-control' name='body_area'>
-          <option value=null>Body area</option>
-          <option value='push'>push</option>
-          <option value='pull'>pull</option>
-          <option value='legs'>legs</option>
-          <option value='core'>core</option>
-          <option value='full'>full</option>
-          <option value='distance'>distance</option>
-        </select>
+      <div class='pt-5 pl-1'>
+        <a class='text-info' href='/' >back to main page</a>
       </div>
-      <input type='submit' value='Add' class='btn btn-info'>
-    </form>
-
-    <div class='exercises-top-metrics'>
-      <span>number of exercises: {{ exercises|length }}</span>
-      <span>
-        push: {{ push_count }} 
-
-        pull: {{ pull_count }} 
-
-        legs: {{ legs_count }} 
-
-        core: {{ core_count }} 
-
-        full: {{ full_count }} 
-
-        distance: {{ distance_count }}  
-      </span>
     </div>
-
-    <a class='text-info' href='/' >back to main page</a>
   </div>
 
   <div class='pl-5'>
-  {% if exercises|length < 1 %}
-  <h4>No exercises!</h4>
+    {% if exercises|length < 1 %}
+    <h4>No exercises!</h4>
 
-  {% else %}
-  <table class='table table-hover table-sm' style='width:130%'>
-    <colgroup>
-      <col class='exercises-table-col1' />
-      <col class='exercises-table-col2' />
-      <col class='exercises-table-col3' />
-    </colgroup>
-    <thead>
-      <tr>
-        <th>Exercise</th>
-        <th>Target Area</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for exercise in exercises %}
+    {% else %}
+    <table class='table table-hover table-sm' style='width:130%'>
+      <thead>
         <tr>
-          <td>{{ exercise.name }}</td>
-          <td>{{ exercise.body_area }}</td>
-          <td>
-            <a href='/delete/{{exercise.id}}' class='text-info'>delete</a>
-            <a href='/update/{{exercise.id}}' class='text-info'>update</a>
-          </td>
+          <th class='sticky-top bg-white'>Exercise</th>
+          <th class='sticky-top bg-white text-center'>Target Area</th>
+          <th class='sticky-top bg-white text-center'>Actions</th>
         </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
-
+      </thead>
+      <tbody>
+        {% for exercise in exercises %}
+          <tr>
+            <td>{{ exercise.name }}</td>
+            <td class='text-center'>{{ exercise.body_area }}</td>
+            <td class='text-center'>
+              <a href='/delete/{{exercise.id}}' class='text-info'><i class="far fa-trash-alt"></i></a>
+              <!-- <a href='/update/{{exercise.id}}' class='text-info'>update</a> -->
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
 </div>
 {% endif %}
