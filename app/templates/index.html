@@ -14,7 +14,7 @@
 <div class='d-flex flex-column align-items-center mt-5'>
   <h1 class='display-4'>Accessory Exercises Generator</h1>
 
-  <form method='POST' class='form-inline py-4'>
+  <form method='POST' class='form-inline py-3 pb-4'>
     <div class='form-group mx-sm-3 mb-2'>
       <select name='choose' class='form-control' >
         <option value='upper'>upper body</option>
@@ -24,10 +24,10 @@
     <input class='btn btn-info mb-2' type='submit' value='generate'>
   </form>
 
-  <table class='table table-bordered' style='width:30%'>
+  <table class='table table-bordered table-sm' style='width:30%'>
     <tr>
       <th>Type</th>
-      <th>Exercises for <em class='text-info'>{{ target_body }} body</em></th>
+      <th>Exercises for <span class='text-info'>{{ target_body }} body</span></th>
     </tr>
 
     {% if target_body == 'upper' %}
